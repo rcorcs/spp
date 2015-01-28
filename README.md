@@ -1,6 +1,6 @@
-# SPP: Structured Parallel Pattern framework
+# Structured Parallel Pattern framework
 
-SPP is a framework that offers a collection of structured parallel patterns.
+SPP is a framework for Structured Parallel Patterns, also known as algorithmic skeleton.
 It is currently implemented using just multithreads.
 
 The parallel patterns offered are:
