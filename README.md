@@ -8,6 +8,10 @@ The parallel patterns offered are:
 * Map
 * Reduce
 * Stencil
+* Nesting (paralllel recurrence)
+* Future
+
+The parallel patterns can be used as a blocking or non-blocking construction. The non-blocking construction is implemented using the Future pattern. Every parallel pattern offered can be used in a nested construction. In order to keep the framework simple, determinism must be assured by the programmer.
 
 ### References
 

@@ -34,6 +34,12 @@ public:
    Type *result(){
       return output;
    }
+
+   static Type *map(Type (*func)(Type), Type *data, int len){
+      Map<Type> m(func, data, len);
+      m.join();
+      return m.result();
+   }
 private:
    std::list<std::thread*> threads;
    Type *output;

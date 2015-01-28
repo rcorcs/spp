@@ -41,6 +41,12 @@ public:
    Type result(){
       return output;
    }
+
+   static Type reduce(Type (*func)(Type, Type), Type *data, int len){
+      Reduce<Type> r(func, data, len); 
+      r.join(); 
+      return r.result();
+   } 
 private:
    std::list<std::thread*> threads;
    Type (*func)(Type, Type);

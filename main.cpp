@@ -65,6 +65,21 @@ void testMapDouble(int n){
    delete map.result();
 }
 
+void testInlineMapInt(int n){
+   int x[n];
+   for(int i = 0; i<n; i++){
+      x[i] = i;
+   }
+   int *y = spp::Map<int>::map(applyInt, x, n);
+   std::cout << "y = ";
+   for(int i = 0; i<n; i++){
+      std::cout << y[i] << "; ";
+      std::cout.flush();
+   }
+   std::cout << std::endl;
+   delete y;
+}
+
 int addInt(int a, int b){
    return a+b;
 }
@@ -77,6 +92,15 @@ void testReduceInt(int n){
    spp::Reduce<int> reduce(addInt, x, n);
    reduce.join();
    std::cout << "y = " << reduce.result() << std::endl;
+}
+
+void testInlineReduceInt(int n){
+   int x[n];
+   for(int i = 0; i<n; i++){
+      x[i] = i;
+   }
+   int y = spp::Reduce<int>::reduce(addInt, x, n);
+   std::cout << "y = " << y << std::endl;
 }
 
 int main(){
@@ -93,5 +117,9 @@ int main(){
    fork.join();
    std::cout << "Testing Reduce<int>" << std::endl;
    testReduceInt(101);
+   std::cout << "Testing Inline Map<int>" << std::endl;
+   testInlineMapInt(20);
+   std::cout << "Testing Inline Reduce<int>" << std::endl;
+   testInlineReduceInt(101);
    return 0;
 }
