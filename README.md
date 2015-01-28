@@ -1,6 +1,6 @@
 # Structured Parallel Pattern framework
 
-SPP is a framework for Structured Parallel Patterns, also known as algorithmic skeleton.
+SPP is a framework for Structured Parallel Patterns, also known as algorithmic skeletons.
 It is currently implemented using just multithreads.
 
 The parallel patterns offered are:
@@ -12,6 +12,10 @@ The parallel patterns offered are:
 * Future
 
 The parallel patterns can be used as a blocking or non-blocking construction. The non-blocking construction is implemented using the Future pattern. Every parallel pattern offered can be used in a nested construction. In order to keep the framework simple, determinism must be assured by the programmer.
+
+### Motivation
+
+The main purpose of this framework is to offer the maximum number of structured parallel patterns as possible, while still allowing for nesting constructions. It is very important to keep the framework general, flexible and easy to use. It is also my intention to support for hybrid (and distributed) architectures.
 
 ### References
 
