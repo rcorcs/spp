@@ -7,7 +7,8 @@ The parallel patterns offered are:
 * Fork-join
 * Map
 * Reduce
-* Stencil
+* Stencil (developing)
+* Pipeline (developing)
 * Nesting (paralllel recurrence)
 * Future
 
