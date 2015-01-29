@@ -2,7 +2,7 @@
 #define __SPP_REDUCE__
 
 #include <list>
-#include <list>
+#include <thread>
 
 namespace spp{
 

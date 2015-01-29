@@ -2,7 +2,7 @@
 #define __SPP_MAP__
 
 #include <list>
-#include <list>
+#include <thread>
 
 namespace spp{
 
