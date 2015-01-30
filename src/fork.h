@@ -11,8 +11,14 @@ public:
    Fork(){
    }
 
-   void add( void (*call_back)() ){
+/*   void add( void (*call_back)() ){
       std::thread *t = new std::thread(call_back);
+      this->threads.push_back(t);
+   }
+*/
+   template<typename Fn, typename... Args>
+   void add(Fn&& fn, Args&&... args){
+      std::thread *t = new std::thread(fn, args...);
       this->threads.push_back(t);
    }
 

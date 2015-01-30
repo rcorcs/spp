@@ -4,5 +4,6 @@
 #include "fork.h"
 #include "map.h"
 #include "reduce.h"
+#include "pipeline.h"
 
 #endif

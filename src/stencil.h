@@ -1,8 +1,7 @@
-#ifndef __SPP_STENCIL__
-#define __SPP_STENCIL__
+#ifndef __SPP_MAP__
+#define __SPP_MAP__
 
-#include <list>
-#include <thread>
+#include "fork.h"
 
 namespace spp{
 
@@ -18,24 +17,25 @@ public:
          }
       };
       for(int i = 0; i<nthreads; i++){
-         std::thread *t = new std::thread(call_back, func, data, output, int(i*(float(len)/float(nthreads))), int((i+1)*(float(len)/float(nthreads))));
-         this->threads.push_back(t);
+         this->fork.add(call_back, func, data, output, int(i*(float(len)/float(nthreads))), int((i+1)*(float(len)/float(nthreads))));
       }
    }
 
    void join(){
-      for(std::list<std::thread*>::iterator it = this->threads.begin(); it!=this->threads.end(); it++){
-         (*it)->join();
-         delete (*it);
-      }
-      this->threads.clear();
+      this->fork.join();
    }
 
    Type *result(){
       return output;
    }
+
+   static Type *map(Type (*func)(Type), Type *data, int len){
+      Map<Type> m(func, data, len);
+      m.join();
+      return m.result();
+   }
 private:
-   std::list<std::thread*> threads;
+   Fork fork;
    Type *output;
    int nthreads;
 };

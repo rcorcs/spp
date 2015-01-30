@@ -1,8 +1,7 @@
 #ifndef __SPP_REDUCE__
 #define __SPP_REDUCE__
 
-#include <list>
-#include <thread>
+#include "fork.h"
 
 namespace spp{
 
@@ -20,17 +19,12 @@ public:
          }
       };
       for(int i = 0; i<nthreads; i++){
-         std::thread *t = new std::thread(call_back, func, data, &(tmpOut[i]), int(i*(float(len)/float(nthreads))), int((i+1)*(float(len)/float(nthreads))));
-         this->threads.push_back(t);
+         this->fork.add(call_back, func, data, &(tmpOut[i]), int(i*(float(len)/float(nthreads))), int((i+1)*(float(len)/float(nthreads))));
       }
    }
 
    void join(){
-      for(std::list<std::thread*>::iterator it = this->threads.begin(); it!=this->threads.end(); it++){
-         (*it)->join();
-         delete (*it);
-      }
-      this->threads.clear();
+      this->fork.join();
       output = tmpOut[0];
       for(int i = 1; i<nthreads; i++){
          output = func(output, tmpOut[i]);
@@ -48,7 +42,7 @@ public:
       return r.result();
    } 
 private:
-   std::list<std::thread*> threads;
+   Fork fork;
    Type (*func)(Type, Type);
    Type output;
    Type *tmpOut;

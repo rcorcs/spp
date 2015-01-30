@@ -7,10 +7,10 @@ _DEPS= spp.h fork.h map.h reduce.h array.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 ODIR=../../obj/test
-_OBJ = map.o reduce.o
+_OBJ = map.o reduce.o fork.o pipeline.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-all: map reduce
+all: map reduce fork
 
 $(ODIR)/%.o: %.cpp $(DEPS)
 	$(CC) -o $@ $< -c $(CFLAGS)
@@ -21,5 +21,11 @@ map: $(ODIR)/map.o
 reduce: $(ODIR)/reduce.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
+fork: $(ODIR)/fork.o
+	$(CC) -o $@ $^ $(CFLAGS)
+
+pipeline: $(ODIR)/pipeline.o
+	$(CC) -o $@ $^ $(CFLAGS)
+
 clean:
-	rm -f $(ODIR)/*.o *~ map reduce
+	rm -f $(ODIR)/*.o *~ map reduce fork
