@@ -1,14 +1,14 @@
-#ifndef __SPP_STENCIL__
-#define __SPP_STENCIL__
+#ifndef __SPP_MAP__
+#define __SPP_MAP__
 
 #include "fork.h"
 
 namespace spp{
 
 template<typename Type>
-class Stencil{
+class Map{
 public:
-   Stencil(Type (*func)(Type), Type *data, int len){
+   Map(Type (*func)(Type), Type *data, int len){
       output = new Type[len];
       nthreads = 4;
       void (*call_back)(Type (*func)(Type), Type *in, Type *out, int begin, int end) = [](Type (*func)(Type), Type *in, Type *out, int begin, int end){

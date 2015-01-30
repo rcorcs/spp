@@ -8,8 +8,6 @@ namespace spp {
 
 class Fork{
 public:
-   Fork(){
-   }
 
 /*   void add( void (*call_back)() ){
       std::thread *t = new std::thread(call_back);

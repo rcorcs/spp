@@ -24,14 +24,15 @@ public:
          }
       };
       Type res;
-      fork.add(call_back, filters, data, res);
-      fork.join();
+      call_back(filters, data, res); //TODO fix the following fork call
+      //fork.add(call_back, filters, data, res);
+      //fork.join();
       return res;
    }
 
 private:
    std::list<Type (*)(Type)> filters;
-   Fork fork;
+   //Fork fork;
 };
 
 }//end of spp namespace
